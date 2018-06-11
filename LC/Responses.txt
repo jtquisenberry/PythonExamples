@@ -1,0 +1,228 @@
+
+
+The two forms of `assertRaises` are the following: 
+	(1) assertRaises(exception, callable, *args)
+	(2) assertRaises(exception)
+	
+Each overload tests whether a region of code throws an exception. However, there are significant differences.
+
+CALLING
+
+Overload #1 takes a function, meaning that an assignment is not a valid argument. 
+
+	self.assertRaises(TypeError, self.morris.hair_color = 'white')
+	
+This limitation can be overcome by putting the assignment into a function. 
+	
+	def do_assignment(self):
+        self.morris.hair_color = 'white'
+
+    def test_cat_readonly_0(self):
+        self.assertRaises(TypeError, self.do_assignment)
+	
+However, putting the assignment within the body of the `with` is more readable.
+	
+	
+ORDER OF EVALUATION
+
+With overload #1, Python first evaluates each argument and then evaluates `assertRaises()`). In the above example, the do_assignment function throws an exception, meaning that `assertRaises()` is not evaluated.
+
+With overload #2, the assignment throws an exception, but the exception is captured for evaluation by `assertRaises`.
+
+-------------------
+
+There is one potential pitfall, although it did not manifest in my implementation. If standard out is not reset to the console, then it will not be possible to display status messages during unit testing. In my solution, the `setUp()` function set `sys.stdout` to a local variable before _each_ test. Therefore, there was no possibility of writing to the console. 
+
+Suppose that I had included a second test case like this:
+
+class AnimalTestCase2(unittest.TestCase):
+
+    def test_cows(self):
+        print('Beginning Test dog == dog')
+        self.assertEqual('dog', 'dog')
+		
+If standard out is not reset to the console, then the above code will not display a message to the user. If it is reset, then the function prints "Beginning Test dog == dog".
+
+------------------
+
+
+
+Can you compare/contrast this method of using assertRaises vs the method you use below with the with clause?
+
+
+    Jacob Quisenberry author
+
+    The two forms of assertRaises are the following:
+    (1) assertRaises(exception, callable, *args)
+    (2) assertRaises(exception)
+
+    Each overload tests whether a region of code throws an exception. However, there are significant differences.
+
+    Calling
+
+    Overload #1 takes a function, meaning that an assignment is not a valid argument.
+
+    self.assertRaises(TypeError, self.morris.hair_color = 'white')
+
+    This limitation can be overcome by putting the assignment into a function.
+
+    def do_assignment(self):
+        self.morris.hair_color = 'white'
+
+    def test_cat_readonly_0(self):
+        self.assertRaises(TypeError, self.do_assignment)
+
+    However, putting the assignment within the body of the with is more readable.
+
+    Order of Evaluation
+
+    With overload #1, Python first evaluates each argument and then evaluates assertRaises(). In the above example, the do_assignment function throws an exception, meaning that assertRaises() is not evaluated.
+
+    With overload #2, the assignment throws an exception, but the exception is captured for evaluation by assertRaises.
+
+	
+---------------
+
+
+Are there any pitfalls to not resetting this in the tearDown?
+
+
+
+    Jacob Quisenberry author
+
+    There is one potential pitfall, although it did not manifest in my implementation. If standard out is not reset to the console, then it will not be possible to display status messages during unit testing. In my solution, the setUp() function set sys.stdout to a local variable before each test. Therefore, there was no possibility of writing to the console.
+
+    Suppose that I had included a second test case like this:
+
+    class AnimalTestCase2(unittest.TestCase):
+
+    def test_cows(self):
+        print('Beginning Test dog == dog')
+        self.assertEqual('dog', 'dog')
+
+    If standard out is not reset to the console, then the above code will not display a message to the user. If it is reset, then the function prints "Beginning Test dog == dog".
+
+	
+-------------------
+
+
+
+How could add_offspring and print_pedigree be changed to support two parents?
+
+
+    Jacob Quisenberry author
+
+    Two attributes, a dictionary, and recursion.
+
+    ‌
+
+    I would start by replacing the parent attribute with two new attributes in order to create references to each parent:
+
+            self.father = None
+            self.mother = None
+
+    I would modify add_offspring to establish multiple relationships: father → child, mother → child, child → father, and mother → child. If required, I would add a gender attribute and validate that father is male and mother is female.
+
+        def add_offspring2(self, child, mate):
+            child.father = self
+            child.mother = mate
+            self.offspring.append(child)
+            mate.offspring.append(child)
+
+    In the single-parent design, I stored the pedigree as a list, where each position in this list represents a generation. With a two-parent design, there are multiple members of a generation. The technique I used to traverse the family tree is not expected to group members of a generation together.
+
+    Therefore, I moved to a dictionary, where generations are represented by keys. Each value is a list containing the names of the members of the generation.
+
+    self.pedigree = {}
+
+    I needed a more sophisticated method to traverse the branches of the tree. I implemented recursion in these functions:
+
+        def print_pedigree(self, animal =  None, generation = 0):
+            if (generation == 0):
+                animal = self
+                # print(animal.name, generation)
+                if (generation not in self.pedigree):
+                    self.pedigree[generation] = [animal.name]
+                else:
+                    self.pedigree[generation].append(animal.name)
+
+                self.print_pedigree_recur(animal, generation + 1)
+
+            # Alphabetize the members of each generation.
+            for k in self.pedigree:
+                self.pedigree[k].sort()
+
+            # Keys represent generations. Perform a reverse sort to sort the
+            # oldest generation first
+            pedigree_list = []
+            for k in (reversed(sorted(self.pedigree.keys()))):
+                for m in self.pedigree[k]:
+                    pedigree_list.append(m)
+            print(self.pedigree)
+            print(', '.join(pedigree_list))
+
+        def print_pedigree_recur(self, animal = None, generation = 0):
+            if(animal.father is None):
+                return
+            else:
+                # print(animal.father.name, generation)
+                # print(animal.mother.name, generation)
+
+                if (generation not in self.pedigree):
+                    self.pedigree[generation] = [animal.father.name]
+                    self.pedigree[generation].append(animal.mother.name)
+                else:
+                    self.pedigree[generation].append(animal.father.name)
+                    self.pedigree[generation].append(animal.mother.name)
+
+                self.print_pedigree_recur(animal.father, generation + 1)
+                self.print_pedigree_recur(animal.mother, generation + 1)
+
+    Notice the condition if(animal.father is None):. The way I established the relationships, if an animal has a father, it also has mother. Additional conditions could accommodate the case where only one parent is assigned, as in mother = None. I would also consider raising TypeError if an invalid mate is passed to add_offspring2.
+
+    I established the following family tree:
+
+    # Design of the dog-family tree.
+    #   h i   j k     l m   n o
+    #    d     e       f     g
+    #        b            c
+    #              a
+    #
+
+    , using the following code.
+
+    alpha = Dog('Alpha','Saint Bernard')
+    bravo = Dog('Bravo', 'Golden Retriever')
+    charlie = Dog('Charlie', 'Saint Bernard')
+    delta = Dog('Delta', 'Saint Bernard')
+    echo = Dog('Echo', 'Saint Bernard')
+    foxtrot = Dog('Foxtrot', 'Saint Bernard')
+    golf = Dog('Golf', 'Saint Bernard')
+    hotel = Dog('Hotel','Saint Bernard')
+    india = Dog('India', 'Golden Retriever')
+    juliet = Dog('Juliet', 'Saint Bernard')
+    kilo = Dog('Kilo', 'Saint Bernard')
+    lima = Dog('Lima', 'Saint Bernard')
+    mike = Dog('Mike', 'Saint Bernard')
+    november = Dog('November', 'Saint Bernard')
+    oscar = Dog('Oscar', 'Saint Bernard')
+
+    bravo.add_offspring2(alpha, charlie)
+    delta.add_offspring2(bravo, echo)
+    foxtrot.add_offspring2(charlie, golf)
+    hotel.add_offspring2(delta, india)
+    juliet.add_offspring2(echo, kilo)
+    lima.add_offspring2(foxtrot, mike)
+    november.add_offspring2(golf, oscar)
+
+    In addition to the final list, I output the dictionary to demonstrate assignment of animals to generations.
+
+    alpha.print_pedigree()
+
+    {0: ['Alpha'], 1: ['Bravo', 'Charlie'], 2: ['Delta', 'Echo', 'Foxtrot', 'Golf'], 3: ['Hotel', 'India', 'Juliet', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar']}
+    Hotel, India, Juliet, Kilo, Lima, Mike, November, Oscar, Delta, Echo, Foxtrot, Golf, Bravo, Charlie, Alpha
+
+    bravo.print_pedigree()
+
+    {0: ['Bravo'], 1: ['Delta', 'Echo'], 2: ['Hotel', 'India', 'Juliet', 'Kilo']}
+    Hotel, India, Juliet, Kilo, Delta, Echo, Bravo
