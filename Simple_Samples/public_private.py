@@ -4,10 +4,10 @@ class Foo:
         self._attribute1 = attribute1
         self.attribute2 = attribute2
 
-    def method1(selfself, arg1, arg2):
+    def method1(self, arg1, arg2):
         return [arg1, arg2]
 
-    def _method2(selfself, arg1):
+    def _method2(self, arg1):
         print('aaa')
         pass
 
