@@ -1,4 +1,4 @@
-
+# https://docs.python.org/3/library/exceptions.html
 
 try:
     print(1/0)
