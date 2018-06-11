@@ -1,0 +1,21 @@
+https://www.python.org/dev/peps/pep-0008/
+
+Packages
+Short, all lowercase names. Underscores discouraged.
+
+Modules
+Short, all lowercase names. Underscores permissible.
+
+Classes
+CapWords
+
+Functions
+Lowercase, with underscores. mixedCase as an alternative.
+
+Variables
+Lowercase, with underscores. mixedCase as an alternative.
+
+
+Function and Method Arguments
+* Always use self for the first argument to instance methods.
+* Always use cls for the first argument to class methods.
