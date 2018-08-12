@@ -12,3 +12,6 @@ print(dog.feet)
 
 Dog_dict = Dog.__dict__
 dog_dict = dog.__dict__
+
+print(Dog_dict)
+print(dog_dict)

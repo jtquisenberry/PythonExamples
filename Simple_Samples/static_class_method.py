@@ -6,7 +6,7 @@ class Test(object):
 
     # class method:
     @classmethod
-    def MyClassMethod(klass):
+    def myClassMethod(cls):
         print('class method')
 
     # static method:
@@ -16,12 +16,13 @@ class Test(object):
 
 t = Test()
 t.MyMethod()
-t.MyClassMethod()
+t.myClassMethod()
 t.MyStaticMethod()
 
 
+# Test.MyMethod() # Exception
 Test.MyMethod(None)
 Test.MyMethod(t)
-Test.MyClassMethod()
+Test.myClassMethod()
 Test.MyStaticMethod()
 
