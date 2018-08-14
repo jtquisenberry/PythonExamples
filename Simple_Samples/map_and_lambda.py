@@ -12,3 +12,6 @@ nums3 = list(map(doCube, nums))
 print(nums3)
 nums3 = list(map(cube, nums))
 print(nums3)
+
+nums4 = list(map(lambda x, y: x**3 + y, nums, [3,3,3,3,3]))
+print(nums4)
