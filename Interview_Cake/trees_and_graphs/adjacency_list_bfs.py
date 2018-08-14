@@ -1,8 +1,12 @@
 import unittest
-# import queue
-# import collections
 from collections import deque
 
+# Breadth First Search (BFS) uses a queue.
+# Add the first node to the queue.
+# Add to list of visited nodes.
+# Pop the left side of the queue.
+# For each neighbor, if not in the list of visited nodes,
+# add to nodes to visit and visited.
 
 def reconstruct_path(previous_nodes, start_node, end_node):
     reversed_shortest_path = []

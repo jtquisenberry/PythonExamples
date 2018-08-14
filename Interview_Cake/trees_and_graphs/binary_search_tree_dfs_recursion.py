@@ -4,12 +4,16 @@ import unittest
 def is_binary_search_tree(root, lower_bound=float('-inf'), upper_bound=float('inf')):
     # Determine if the tree is a valid binary search tree
 
+    # Base case 1
     if root is None:
         return True
 
+    # Base case 2
     if (root.value >= upper_bound or root.value <= lower_bound):
         return False
 
+    # For each descendant of the current node, send the descendant through the
+    # function. Use some operation to combine results. Here, it is "and".
     # left must be lower than value of current (root.value)
     # right must be greater than value of current( root.value)
     return (is_binary_search_tree(root.left, lower_bound, root.value) and

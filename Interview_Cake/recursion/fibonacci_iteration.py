@@ -1,25 +1,39 @@
 import unittest
 
 
-def fib(n, memo={0: 0}):
-    if n < 0:
-        raise ValueError('n must be positive.')
+# https://www.interviewcake.com/question/python/nth-fibonacci?section=dynamic-programming-recursion&course=fc1
 
+# Iteration version
+
+
+def fib(n):
+    # Calculate the nth Fibonacci number with iteration
+
+    # Edge Case
+    if n < 0:
+        raise ValueError('n must be a positive integer')
+
+    # Special Cases
     if n <= 1:
         return n
 
     previous_2 = 0
     previous_1 = 1
-    current = 0
+    total = 1
 
+    for i in range(2, n + 1):
+        total = previous_2 + previous_1
+        previous_2 = previous_1
+        previous_1 = total
+
+    return total
+
+    # An alternate way to do the iteration
+    '''
     counter = 2
     while counter <= n:
-        current = previous_2 + previous_1
-        previous_2 = previous_1
-        previous_1 = current
         counter += 1
-
-    return current
+    '''
 
 
 # Tests
