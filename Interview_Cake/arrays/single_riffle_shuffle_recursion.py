@@ -48,5 +48,4 @@ class Test(unittest.TestCase):
         result = is_single_riffle([1, 5], [2, 3, 6], [1, 2, 3, 5, 6, 8])
         self.assertFalse(result)
 
-
 unittest.main(verbosity=2)

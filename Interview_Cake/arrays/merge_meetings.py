@@ -1,26 +1,35 @@
 import unittest
-#https://www.interviewcake.com/question/python/merging-ranges?course=fc1&section=array-and-string-manipulation
+
+# https://www.interviewcake.com/question/python/merging-ranges?course=fc1&section=array-and-string-manipulation
+# Sort ranges of tuples
+# sort is n*log(n)
 
 def merge_ranges(meetings):
+
     if len(meetings) < 1:
         return meetings
 
-    # Sort meetings
+    # Sort by start time n*log(n)
     sorted_meetings = sorted(meetings)
 
-    meetings_range = []
-    meetings_range.append(sorted_meetings[0])
+    # Initialize merged_meetings with the earliest meeting
+    merged_meetings = [sorted_meetings[0]]
 
-    for current_meeting_start, current_meeting_end in sorted_meetings[1:]:
-        last_meeting_start, last_meeting_end = meetings_range[-1]
-        if current_meeting_start <= last_meeting_end:
-            # extend the range
-            meetings_range[-1] = (last_meeting_start, max(current_meeting_end, last_meeting_end))
+    # Use this alternative for less space use
+    # meetings.sort()
+
+    for current_start, current_end in sorted_meetings[1:]:
+        merged_start, merged_end = merged_meetings[-1]
+
+        if current_start <= merged_end:
+            # Overlapping meeting
+            merged_meetings[-1] = (merged_start, max(merged_end, current_end))
 
         else:
-            meetings_range.append((current_meeting_start, current_meeting_end))
+            # Non-overlapping meeting
+            merged_meetings.append((current_start, current_end))
 
-    return meetings_range
+    return merged_meetings
 
 
 # Tests
@@ -62,5 +71,5 @@ class Test(unittest.TestCase):
         expected = [(0, 1), (3, 8), (9, 12)]
         self.assertEqual(actual, expected)
 
-
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

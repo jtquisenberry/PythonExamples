@@ -1,0 +1,27 @@
+Hash List is technically
+Search = O(n), Insertion = O(n), Deletion = O(n)
+because there can be hash collisions.
+The amortized complexity is O(1)
+
+ARRAY (STATIC)
+ 	    Worst Case
+space 	O(n)
+lookup 	O(1)
+append 	O(1)
+insert 	O(n)
+delete 	O(n)
+
+ARRAY SLICING
+O(n) time
+O(n) space
+
+DYNAMIC ARRAY
+
+        Average Worst Case
+space 	O(n) 	O(n)
+lookup 	O(1) 	O(1)
+append 	O(1) 	O(n)
+insert 	O(n) 	O(n)
+delete 	O(n) 	O(n)
+
+The append worst case of O(n) may occur with resizing.
