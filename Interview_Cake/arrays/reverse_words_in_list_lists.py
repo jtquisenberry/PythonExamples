@@ -1,45 +1,38 @@
 import unittest
+from collections import deque
 
 
 # https://www.interviewcake.com/question/python/reverse-words?section=array-and-string-manipulation&course=fc1
-# O(n) time
-# O(1) space
-
-
-def reverse_list(message, start, end):
-    # print("start", start)
-    # print("end", end)
-
-    start_index = start
-    end_index = end
-
-    while start_index < end_index:
-        message[start_index], message[end_index] = \
-            message[end_index], message[start_index]
-
-        start_index += 1
-        end_index -= 1
-
+# Solution with lists only
+# Not in place
 
 def reverse_words(message):
-    # print("message1",message)
-    reverse_list(message, 0, len(message) - 1)
-    # print("message2", message)
+    if len(message) < 1:
+        return
 
-    start_index = 0
-    end_index = 0
+    current_word = []
+    word_list = []
+    final_output = []
 
     for i in range(0, len(message)):
-        if i == len(message) - 1:
-            end_index = i
-        elif message[i] == ' ':
-            end_index = i - 1
+        character = message[i]
+        if character != ' ':
+            current_word.append(character)
+        if character == ' ' or i == len(message) - 1:
+            word_list.append(current_word)
+            current_word = []
 
-        if i == len(message) - 1 or message[i] == ' ':
-            reverse_list(message, start_index, end_index)
-            start_index = i + 1
-            # print("message3", message)
+    # print(word_list)
+    for j in range(len(word_list) - 1, -1, -1):
+        final_output.extend(word_list[j])
+        if j > 0:
+            final_output.extend(' ')
 
+    # print(final_output)
+    for k in range(0, len(message)):
+        message[k] = final_output[k]
+
+    return
 
 
 # Tests
