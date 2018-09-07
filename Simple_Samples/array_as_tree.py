@@ -24,4 +24,5 @@ while len(tree) > 2**(power_of_two - 1):
 
     power_of_two += 1
 
-print(left_side, right_side)
+print('left_side', left_side)
+print('right_side', right_side)
