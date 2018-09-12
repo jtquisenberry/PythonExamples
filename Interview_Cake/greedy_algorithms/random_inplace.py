@@ -34,14 +34,14 @@ class TestCase(unittest.TestCase):
         actual = [1, 2, 3, 4, 5]
         shuffle(actual, self.seed)
         # print('actual', actual)
-        self.assertEquals(expected, actual)
+        self.assertEqual(expected, actual)
 
     def testB(self):
         expected = [4, 5, 1, 2, 3]
         actual = [1, 2, 3, 4, 5]
         shuffle(actual, 99)
         # print('actual', actual)
-        self.assertEquals(expected, actual)
+        self.assertEqual(expected, actual)
 
     def teadDown(self):
         pass
