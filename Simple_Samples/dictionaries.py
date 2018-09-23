@@ -31,5 +31,7 @@ print('dict2', d2)
 i = list(d2.items())
 i.sort(key= lambda x: x[1])
 print(i)
+del d2['c']
+print(d2)
 #i.sort()
 #print('i', i)

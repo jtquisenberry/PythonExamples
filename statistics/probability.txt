@@ -1,0 +1,15 @@
+https://www.wyzant.com/resources/lessons/math/statistics_and_probability/probability/further_concepts_in_probability
+
+Independent Events
+P(A ∩ B ) = P(A) * P(B)
+
+Task
+Bag 1 contains 4 red balls and 5 black balls.
+Bag 2 contains 3 red balls and 7 black balls.
+One ball is drawn from Bag 1 , and two balls are drawn from Bag 2.
+Find the probability that two balls are black and one ball is red.
+
+Option 1: P(A) 5/9 * 7/10 * 2/9
+Option 2: 4/9 * 
+P(~A) = 4/9
+P(B) = 7/10 * 6/9
