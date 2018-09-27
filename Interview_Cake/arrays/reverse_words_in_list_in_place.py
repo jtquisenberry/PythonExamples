@@ -5,6 +5,12 @@ import unittest
 # O(n) time
 # O(1) space
 
+# reverse words in place
+# We'll write a helper function reverse_characters() that reverses all the characters between a left_index
+# and right_index. We use it to:
+# Reverse all the characters in the entire message, giving us the correct word order but with each word backward.
+# Reverse the characters in each individual word.
+
 
 def reverse_list(message, start, end):
     # print("start", start)

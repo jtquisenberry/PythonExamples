@@ -2,7 +2,16 @@ import unittest
 
 # https://www.interviewcake.com/question/python/merging-ranges?course=fc1&section=array-and-string-manipulation
 # Sort ranges of tuples
-# sort is n*log(n)
+# Time: O(n * lg(n)) because of the sorting step.
+# Space: O(n) -- 1n for sorted_meetings, 1n for merged_meetings.
+
+# First, we sort our input list of meetings by start time so any meetings that might
+# need to be merged are now next to each other.
+# Then we walk through our sorted meetings from left to right. At each step, either:
+# We can merge the current meeting with the previous one, so we do.
+# We can't merge the current meeting with the previous one, so we know the previous meeting can't be merged with any
+# future meetings and we throw the current meeting into merged_meetings.
+
 
 def merge_ranges(meetings):
 
@@ -13,6 +22,8 @@ def merge_ranges(meetings):
     sorted_meetings = sorted(meetings)
 
     # Initialize merged_meetings with the earliest meeting
+    # The for loop requires comparison with the latest meeting in the list,
+    # so there needs to be a latest meeting in the list.
     merged_meetings = [sorted_meetings[0]]
 
     # Use this alternative for less space use

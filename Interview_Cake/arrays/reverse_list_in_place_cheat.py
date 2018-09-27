@@ -1,5 +1,7 @@
 import unittest
 
+# https://www.interviewcake.com/question/python/reverse-string-in-place?section=array-and-string-manipulation&course=fc1
+# Python already sorts
 
 def reverse(list_of_chars):
     # Reverse the input list of chars in place
@@ -33,5 +35,5 @@ class Test(unittest.TestCase):
         expected = ['E', 'D', 'C', 'B', 'A']
         self.assertEqual(list_of_chars, expected)
 
-
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

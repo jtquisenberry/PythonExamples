@@ -62,3 +62,8 @@ my_queue.pop()
 my_queue.popleft()
 print('my_queue', my_queue)
 
+
+
+
+list1.insert(0,6)
+print(list1)

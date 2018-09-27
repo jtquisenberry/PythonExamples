@@ -6,6 +6,13 @@ import unittest
 # Time = O(n)
 # Space = O(n)
 
+# We make one pass through movie_lengths, treating each item as the first_movie_length. At each iteration, we:
+# 1. See if there's a matching_second_movie_length we've seen already (stored in our movie_lengths_seen set)
+# that is equal to flight_length - first_movie_length. If there is, we short-circuit and return True.
+# 2. Keep our movie_lengths_seen set up to date by throwing in the current first_movie_length.
+# We know users won't watch the same movie twice because we check movie_lengths_seen for matching_second_movie_length
+# before we've put first_movie_length in it!
+
 def can_two_movies_fill_flight(movie_lengths, flight_length):
     # Determine if two movie runtimes add up to the flight length
     # And do not show the same movie twice.

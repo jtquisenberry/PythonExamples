@@ -5,6 +5,7 @@ import unittest
 # Sort in descending order
 # Counting Sort with list
 # Sort the scores in O(n) time
+# The for loop forces the scores to sort in order, in this case descending order.
 
 
 def sort_scores(unsorted_scores, highest_possible_score):

@@ -3,13 +3,19 @@ import unittest
 
 # https://www.interviewcake.com/question/python/reverse-string-in-place?section=array-and-string-manipulation&course=fc1
 # space = O(1)
-# time = O(n)
+# time = O(n) - walking through the list of characters one time.
+
+# Reverse the order of a string in place.
+# We swap the first and last characters, then the second and second-to-last characters,
+# and so on until we reach the middle.
 
 # Use a while loop to converge on the center of the list.
 
 def reverse(list_of_chars):
     # Reverse the input list of chars in place
 
+    # This edge case is not strictly necessary.
+    # Primary logic handles this case.
     if len(list_of_chars) < 1:
         return
 
