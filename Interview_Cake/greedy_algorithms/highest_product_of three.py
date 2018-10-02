@@ -4,6 +4,19 @@
 # Space = O(n) (because using a slice)
 # Space = O(1) if using indexes instead.
 
+# For a greedy problem, the idea is to keep track of the best solution
+# so far and the variables needed to calculate a better solution if one arises.
+# Setup often involves setting initial values to the first elements in a list.
+# In this case setting initial values of 0 would not work because the for loop
+# will not iterate over indexes 0 or 1, and their values would be ignored.
+
+# STEPS
+# Set initial values equal to early elements in the list.
+# For each later element, do comparison to determine the current case
+# is the best case.
+# Update the precursors.
+
+
 import unittest
 
 
@@ -13,12 +26,16 @@ def highest_product_of_3(list_of_ints):
     if len(list_of_ints) < 3:
         raise ValueError('Three values are required')
 
+    # Since the for loop below is starting at index 2,
+    # The highest and lowest of the previous two elements must be calculated.
+    # Otherwise, they will be ignored.
     highest = max(list_of_ints[0], list_of_ints[1])
     lowest = min(list_of_ints[0], list_of_ints[1])
     highest_product_of_2 = list_of_ints[0] * list_of_ints[1]
     lowest_product_of_2 = list_of_ints[0] * list_of_ints[1]
     highest_product_of_3 = list_of_ints[0] * list_of_ints[1] * list_of_ints[2]
 
+    # Remembering this slice is critical
     for number in list_of_ints[2:]:
         highest_product_of_3 = max(highest_product_of_3, number * highest_product_of_2, number * lowest_product_of_2)
 

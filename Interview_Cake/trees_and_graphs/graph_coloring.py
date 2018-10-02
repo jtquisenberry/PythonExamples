@@ -38,14 +38,14 @@ def color_graph(graph, colors):
 
         # Create a list of used nodes - nodes that have already
         # been allocated to neighbors.
-        used_nodes = set()
+        used_colors = set()
         for neighbor in node.neighbors:
             # Add the color of each neighbor to the set
-            used_nodes.add(neighbor.color)
+            used_colors.add(neighbor.color)
 
         # Apply the first available color to the current node.
         for color in colors:
-            if color not in used_nodes:
+            if color not in used_colors:
                 node.color = color
                 break
 

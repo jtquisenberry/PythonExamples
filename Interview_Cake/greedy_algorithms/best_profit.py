@@ -6,6 +6,14 @@
 # Space = O(1) if change from slice to index.
 
 
+# For a greedy problem, the idea is to keep track of the best solution
+# so far and the variables needed to calculate a better solution if one arises.
+# Setup often involves setting initial values to the first elements in a list.
+# In this case, setting best profit to 0 would fail to handle the case where only
+# a loss is possible. That is why I use the first two elements in stock_prices.
+
+# Greedy often performs a comparison before resetting the best precursors so far.
+
 def get_max_profit(stock_prices):
     if len(stock_prices) < 1:
         raise ValueError('Two prices are required')
@@ -15,12 +23,19 @@ def get_max_profit(stock_prices):
     minimum_price_so_far = stock_prices[0]
     best_profit_so_far = stock_prices[1] - stock_prices[0]
 
+    # Could save space by using indexing over stock_prices,
+    # rather than a slice.
     for price in stock_prices[1:]:
 
+        # Do this first because the current price must not be considered
+        # a purchase price to determine the current best profit.
         profit = price - minimum_price_so_far
+
+        # Could also use max(best_profit, current_profit)
         if profit > best_profit_so_far:
             best_profit_so_far = profit
 
+        # Could also use min(lowest_cost_so_far, price)
         if price < minimum_price_so_far:
             minimum_price_so_far = price
 
@@ -67,5 +82,5 @@ class Test(unittest.TestCase):
         with self.assertRaises(Exception):
             get_max_profit([1])
 
-
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

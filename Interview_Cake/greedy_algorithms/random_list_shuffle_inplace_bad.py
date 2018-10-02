@@ -2,6 +2,9 @@ import random
 
 # https://www.interviewcake.com/question/python/shuffle?section=greedy&course=fc1
 # An incorrect solution that gives non-uniform random results.
+# This method uses:
+# A common first idea is to walk through the list and swap each element with a random other element.
+# The correct solution swaps each element with a random later (or current) element.
 
 
 def get_random(floor, ceiling):
