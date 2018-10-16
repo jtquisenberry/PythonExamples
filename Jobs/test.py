@@ -1,5 +1,8 @@
 
 
-products = ['1','2','3','4']
-output = ''.join(products)
-print(output)
+from datetime import *
+d = datetime.now()
+print(d)
+
+import math
+print(math.pi)
