@@ -1,0 +1,5 @@
+Task
+There are people about to sit down around a round table. Find the probability that 2 particular people will sit next to one another.
+
+
+= 2/9

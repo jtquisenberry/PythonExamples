@@ -1,0 +1,21 @@
+https://www.hackerrank.com/challenges/basic-probability-puzzles-7/forum
+
+A firm produces steel pipes in three plants.
+
+    Plant A produces 500 units per day and has a fraction defective output of 0.005.
+    Plant B produces 1000 units per day and has a fraction defective output of 0.008.
+    Plant C produces 2000 units per day and has a fraction defective output of 0.010.
+
+At random, a pipe is selected from the day’s total production and it is found to be
+defective. What is the probability that it came from plant A?
+
+Expected Defective Pipes
+
+A = 500  * .005 = 2.5
+B = 1000 * .008 = 8
+C = 2000 * .010 = 20
+
+Contribution by A to all pipes = 2.5 / (2.5 + 8 + 20)
+= 2.5/30.5
+= 5/61
+

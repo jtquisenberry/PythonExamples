@@ -1,0 +1,12 @@
+Combinations
+http://www.mathwords.com/c/combination_formula.htm
+
+nCr = (n!)/(r!)(n-r)!
+nCr is "n choose r"
+
+How many different committees of 4 students can be chosen from a group of 15?
+15 C 4 =
+
+15!/4!(15-4)!
+= 15!/4!11!
+= 1365

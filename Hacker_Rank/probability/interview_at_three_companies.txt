@@ -1,0 +1,32 @@
+https://www.hackerrank.com/challenges/basic-probability-puzzles-9/problem
+
+A candidate is selected for interview of management trainees for 3 companies.
+For the first company, there are 12 candidates,
+for the second there are 15 candidates
+and for the third, there are 10 candidates.
+Find the probability that he is selected in at least one of the companies.
+Assume that 1 candidate will be selected in each of the interviews, and all candidates
+appearing for the interview have an equal probability of getting selected.
+
+        Comp 1    Comp 2    Comp 3
+Way 1   Y         Y         Y
+Way 2   Y         Y         N
+Way 3   Y         N         Y
+Way 4   Y         N         N
+Way 5   N         Y         Y
+Way 6   N         Y         N
+Way 7   N         N         Y
+
+        Comp 1    Comp 2    Comp 3
+Way 1   1/12  *   1/15   *  1/10    = 1/1800
+Way 2   1/12  *   1/15   *  9/10    = 9/1800
+Way 3   1/12  *   14/15  *  1/10    = 14/1800
+Way 4   1/12  *   14/15  *  9/10    = 126/1800
+Way 5   11/12 *   1/15   *  1/10    = 11/1800
+Way 6   11/12 *   1/15   *  9/10    = 99/1800
+Way 7   11/12 *   14/15  *  1/10    = 154/1800
+
+Sum = 414/1800
+= 207/900
+= 69/300
+= 23/100

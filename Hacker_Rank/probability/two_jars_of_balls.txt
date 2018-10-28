@@ -1,0 +1,14 @@
+https://www.hackerrank.com/challenges/basic-probability-puzzles-4/problem
+
+Bag1 contains 4 red balls and 5 black balls.
+Bag2 contains 3 red balls and 7 black balls.
+
+One ball is drawn from the Bag1, and 2 balls are drawn from Bag2.
+Find the probability that 2 balls are black and 1 ball is red.
+
+P(Way 1) (B, B, R): 5/9 * 7/10 * 3/9 = 35/270
+P(Way 2) (B, R, B): 5/9 * 3/10 * 7/9 = 35/270
+P(Way 3) (R, B, B): 4/9 * 7/10 * 6/9 = 56/270
+P(Way 1 ∪ Way 2 ∪ Way 3) =
+P(Way 1) + P(Way 2) + P(Way 3) = 126/270
+= 7 / 15

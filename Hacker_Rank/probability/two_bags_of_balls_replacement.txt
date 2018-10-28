@@ -1,0 +1,28 @@
+https://www.hackerrank.com/challenges/basic-probability-puzzles-6/problem
+
+Bag X contains 5 white balls and 4 black balls.
+Bag Y contains 7 white balls and 6 black balls.
+You draw 1 ball from bag X and, without observing its color, put it into bag Y.
+Now, if a ball is drawn from bag Y, find the probability that it is black.
+
+X
+W     B
+5/9   4/9
+
+Y =
+
+Composition A
+5/9 probability of composition
+W     B
+8/14  6/14
+
+Composition B
+4/9 probability of composition
+W     B
+7/14  7/14
+
+5/9 * 6/14 + 4/9 * 7/14
+= 30/126 + 28/126
+= 58/126
+= 29/63
+
