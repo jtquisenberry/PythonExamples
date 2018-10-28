@@ -15,7 +15,7 @@ def find_rotation_point(words):
     floor_index = 0
     ceiling_index = len(words) - 1
 
-    while ceiling_index > floor_index:
+    while floor_index < ceiling_index:
 
         guess_index = floor_index + ((ceiling_index - floor_index) // 2)
 
@@ -44,7 +44,6 @@ def find_rotation_point(words):
 
 
 # Tests
-
 class Test(unittest.TestCase):
 
     def test_small_list(self):
@@ -83,4 +82,5 @@ class Test(unittest.TestCase):
     # Are we missing any edge cases?
 
 
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
