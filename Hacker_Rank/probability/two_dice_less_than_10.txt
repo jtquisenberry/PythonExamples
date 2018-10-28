@@ -1,0 +1,18 @@
+Objective
+In this challenge, we practice calculating probability.
+
+Task
+In a single toss of fair (evenly-weighted) -sided dice, find the probability of that their sum will be at most 9.
+
+        Die 1    Die 2
+P(10) = 3/6   *  1/6
+P(11) = 2/6   *  1/6
+P(12) = 1/6   *  1/6
+
+P(10 ∪ 11 ∪ 12)
+= P(9) + P(10) + P(11) + P(12)
+= 6/36 = 1/6
+
+P(~(10 ∪ 11 ∪ 12))
+= 1 - P(10 ∪ 11 ∪ 12)
+= 5/6

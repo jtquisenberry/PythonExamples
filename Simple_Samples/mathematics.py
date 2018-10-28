@@ -7,3 +7,4 @@ print(b)
 
 for i in range(24):
     print(math.cos(math.pi * i/12))
+

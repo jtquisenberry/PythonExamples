@@ -1,0 +1,12 @@
+https://www.wyzant.com/resources/lessons/math/statistics_and_probability/probability/further_concepts_in_probability
+
+
+B and A are independent if
+P(B|A) = P(B)
+
+
+Independent Events
+P(A ∩ B) = P(A) * P(B)
+
+Dependent Events
+P(A ∩ B) = P(A ∪ B) - (P(A only) + P(B only))

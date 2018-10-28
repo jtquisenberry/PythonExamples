@@ -1,8 +1,9 @@
 
 
-from datetime import *
-d = datetime.now()
-print(d)
+products = ['1','2','3','4']
+output = ''.join(products)
+print(output)
 
-import math
-print(math.pi)
+
+import matplotlib.pyplot as plt
+plt.hist()

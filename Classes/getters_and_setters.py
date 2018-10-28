@@ -12,10 +12,11 @@ class Cat():
     def hair_color(self):
         return self._hair_color
 
+    # Setter has the name of the property
     # Use of a setter to throw AttributeError with a custom message.
     @hair_color.setter
     def hair_color(self, value):
-        #raise AttributeError("Property hair_color is read-only.")
+        # raise AttributeError("Property hair_color is read-only.")
         self._hair_color = value
 
 
@@ -35,12 +36,6 @@ class Test(unittest.TestCase):
         self.cat.hair_color = 'white'
         actual = self.cat.hair_color
         self.assertEqual(expected,actual,'error at test_set_hair_color_property')
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

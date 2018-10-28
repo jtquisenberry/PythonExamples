@@ -1,0 +1,11 @@
+Permutations
+http://www.mathwords.com/p/permutation_formula.htm
+
+nPk = (n!)/(n-k)!
+
+How many ways can 4 students from a group of 15 be lined up for a photograph?
+
+15 P 4 =
+15!/(15-4)!
+= 15!/11!
+= 32760

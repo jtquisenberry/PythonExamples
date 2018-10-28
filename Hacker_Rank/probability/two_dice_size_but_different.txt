@@ -1,0 +1,13 @@
+Task
+For a single toss of fair (evenly-weighted) dice, find the probability that the values rolled by each die will be different and their sum is 6.
+
+Die 1   Die 2
+1       5
+2       4
+3       3
+4       2
+5       1
+
+4 of 36 possibilities.
+= 4/36
+= 1/9

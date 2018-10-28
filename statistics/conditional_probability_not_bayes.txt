@@ -1,0 +1,26 @@
+https://onlinecourses.science.psu.edu/stat414/node/34/
+
+P(A|B) = P(A ∩ B)
+         --------
+         P(B)
+
+         Note that P(A ∩ B) depends on whether A and B are independent.
+
+Let
+* D  = having a disease
+* T+ = testing positive
+
+         Test Result
+Truth    POS   NEG   Total
+Disease  44    23    67
+Healthy  10    60    70
+Total    54    83    137
+
+P(D|T+) = P(D ∩ T+)
+          ---------
+          P(T+)
+
+= 44/54
+= 22/27
+= 0.81
+= 81%

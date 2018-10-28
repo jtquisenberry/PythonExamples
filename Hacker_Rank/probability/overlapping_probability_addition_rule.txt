@@ -1,0 +1,17 @@
+https://www.hackerrank.com/challenges/basic-probability-puzzles-8/problem
+
+Task
+In a certain city, the probability of a resident not reading the morning newspaper is 1/2,
+and the probability of a resident not reading the evening newspaper is 2/5.
+The probability they will read both newspapers is .
+
+Find the probability that a resident reads a morning or evening newspaper.
+
+Reads Morning = 1/2
+Reads Evening = 3/5
+Reads Both = 1/5
+
+P(A ∩ B) = P(A) + P(B) - P(A ∪ B)
+= 1/2 + 3/5 - 1/5
+= 5/10 + 6/10 - 2/10
+= 9/10

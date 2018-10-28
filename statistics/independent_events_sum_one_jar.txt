@@ -1,0 +1,11 @@
+Independent Events
+https://www.enotes.com/homework-help/bag-contains-4-red-balls-3-green-balls-5-yellow-180063
+
+Given a bag of
+* 4 red balls
+* 3 green balls
+* 5 yellow balls
+
+P(red ∪ green) =
+P(red) + P(green) =
+4/12 + 3/12 = 7/12
