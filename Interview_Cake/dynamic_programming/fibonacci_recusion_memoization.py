@@ -3,7 +3,7 @@ import unittest
 
 # https://www.interviewcake.com/question/python/nth-fibonacci?section=dynamic-programming-recursion&course=fc1
 
-# Includes recusion and memoization.
+# Includes recursion and memoization.
 # The memo should be a dictionary where the key is the
 # being passed to the first argument of fib and the value
 # is the result of the computation.
