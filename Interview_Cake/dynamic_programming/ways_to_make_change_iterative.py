@@ -6,6 +6,33 @@ import unittest
 # Time O(n*m): n = amount, m = number of denominations.
 # Space O(n):
 
+# Must have coins on the outer loop, otherwise will do duplicate counting.
+# The result is the non-distinct number of ways (permutations).
+# We are looking for the distinct number of ways.
+
+# Amounts in outer loop
+       #3$                            [3]                [3,1]
+       #2$                  [2]       [2,1]              [2,1,1], [2,2]
+       #1$   [0]    [1]     [1,1]     [1,1,1], [1,2]     [1,1,1,1], [1,1,2], [1,2,1], [1,3]
+# Amounts    0      1       2             3                 4
+
+# Coins in outer loop
+      #3$                                            [3,1]
+      #2$                   [2]        [2,1]         [2,1,1], [2,2]
+      #1$    [0]    [1]     [1,1]      [1,1,1]       [1,1,1,1]
+# Amounts    0      1       2             3                 4
+
+# It may help to think of the amounts in outer loop problem as trees, which is how recursion would work.
+# At value = 3 and denominations 1,2,3
+#
+#              1           2        3
+#          1   2  3      1   2     2
+#         1 2   1       1
+#        1
+#
+# The 1,1,2 and 1,2,1, and 2,1,1 trees are redundant.
+
+
 def change_possibilities(amount, denominations):
     # Calculate the number of ways to make change
 
