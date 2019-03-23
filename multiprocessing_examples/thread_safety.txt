@@ -1,0 +1,25 @@
+http://effbot.org/pyfaq/what-kinds-of-global-value-mutation-are-thread-safe.htm
+
+(L, L1, L2 are lists, D, D1, D2 are dicts, x, y are objects, i, j are ints):
+
+THREAD SAFE (ATOMIC)
+
+L.append(x)
+L1.extend(L2)
+x = L[i]
+x = L.pop()
+L1[i:j] = L2
+L.sort()
+x = y
+x.field = y
+D[x] = y
+D1.update(D2)
+D.keys()
+
+
+NON-ATOMIC
+
+i = i+1
+L.append(L[-1])
+L[i] = L[j]
+D[x] = D[x] + 1

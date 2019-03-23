@@ -8,12 +8,12 @@ import random
 
 class Shape(object):
     # Create based on class name:
+    @staticmethod
     def factory(type):
         #return eval(type + "()")
         if type == "Circle": return Circle()
         if type == "Square": return Square()
         assert 0, "Bad shape creation: " + type
-    factory = staticmethod(factory)
 
 class Circle(Shape):
     def draw(self): print("Circle.draw")
