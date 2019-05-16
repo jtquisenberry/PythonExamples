@@ -19,13 +19,13 @@ print(df)
 print()
 
 # Built-in function STYLE 1
-print('STYLE 1')
+print('BUILT-IN STYLE 1')
 df_agg = df.groupby(['FirstName'], as_index=False)['Number'].sum()
 print(df_agg)
 print()
 
 # Built-in function STYLE 2 - using agg()
-print('STYLE 2')
+print('BUILT-IN STYLE 2')
 df_agg = df.groupby(['FirstName'], as_index=False).agg({'Number': sum})
 print(df_agg)
 print()
@@ -36,6 +36,8 @@ af = AggregateFunction(number_of_elements=3)
 df_agg = df.groupby(['FirstName'], as_index=False).agg({'Number': af.make_partial_list})
 print(df_agg)
 print()
+
+
 
 
 
