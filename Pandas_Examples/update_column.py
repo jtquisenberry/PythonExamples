@@ -25,6 +25,7 @@ print(df)
 print()
 
 # Create new column and update it from ALL other columns
+# axis = 0 processes a column. axis = 1 processes a row
 df['concat'] = df.apply(lambda x: concatenate(x), axis=1)
 print(df)
 print()
