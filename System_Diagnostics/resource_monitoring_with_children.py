@@ -2,6 +2,7 @@ import threading
 import psutil
 import time
 from datetime import datetime
+import sys
 # from .es_helpers import BulkSimpleIterator
 import logging
 
@@ -108,54 +109,20 @@ class ResourceLogger(threading.Thread):
             # data=info(total_mem_used,total_cpu_used,process_total_mem,process_total_cpu,total_python_process,child_info_list,timestamp,len(self.process_id_list.items()))
 
             data = (child_info_list)
-
-            import json
-
-
             combined_cpu_time = 0
             combined_cpu_usage = 0
             current_time = None
 
-
             for item in self.process_dict.items():
-
                 combined_cpu_time += item[1][0]
                 combined_cpu_usage += item[1][1]
                 current_time = item[1][2]
 
+            print('CLOCK TIME: {0}, CPU TIME: {1:.4f}'.format(
+                datetime.strftime(current_time, '%m/%d/%Y %H:%M:%S'), combined_cpu_time))
 
-
-            print('TOTAL', current_time, combined_cpu_time, combined_cpu_usage)
-
-            #print(json.dumps(data))
             data_list.append(data)
-            bbb = 2
-
-            '''
-            if len(data_list)>batch_size:
-
-
-                start_idx=end_idx
-                end_idx=start_idx+len(data_list)
-                index_iterator=list(range(start_idx,end_idx))
-                data_iterator = data_list
-                bulk_iter = BulkSimpleIterator(data_iterator, index_iterator, "monitoring_"+self.index_id, self.doc_type)
-                print("pushing to elasticsearch")
-                self.es.bulk(bulk_iter, refresh=True)
-                data_list=[]
-            '''
             time.sleep(self.delay)
-
-        '''
-        #push all the left data
-        start_idx=end_idx
-        end_idx=start_idx+len(data_list)
-        index_iterator=list(range(start_idx,end_idx))
-        data_iterator = data_list
-        bulk_iter = BulkSimpleIterator(data_iterator, index_iterator, "monitoring_"+self.index_id, self.doc_type)
-        self.es.bulk(bulk_iter, refresh=True)
-        print('resource logger going to exit')
-        '''
 
 
 def find_process_id_by_name(process_name):
@@ -176,26 +143,45 @@ def find_process_id_by_name(process_name):
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
 
-    return list_of_process_objects;
-
-
+    return list_of_process_objects
 
 
 if __name__ == '__main__':
     rl = ResourceLogger(None, None, None, None)
 
-    # Get CA daemon process.
-    pid = 0
-    proc = None
-    processes = find_process_id_by_name('python')
-    for process in processes:
-        arguments = process.cmdline()
-        for argument in arguments:
-            if 'app_daemon.py' in argument:
-                pid = process.pid
-                proc = process
+    print("the script has the name %s" % (sys.argv[0]))
 
-    rl.add_new_process_id(pid, 'parent_' + str(pid))
+    pid = 0
+    name = 'python'
+    second_argument = ''
+
+    if len(sys.argv) >= 2:
+        if sys.argv[1].isdigit():
+            pid = int(sys.argv[1])
+        else:
+            name = sys.argv[1]
+
+    if len(sys.argv) >= 3:
+        second_argument = sys.argv[0]
+
+    # Get parent process.
+    proc = None
+    if pid > 0:
+        rl.add_new_process_id(pid, 'parent_' + str(pid))
+        proc = psutil.Process(pid)
+        print(proc.name())
+
+    else:
+        processes = find_process_id_by_name('python')
+        for process in processes:
+            arguments = process.cmdline()
+            for argument in arguments:
+                if second_argument in argument: # Additional criteria `app_daemon.py`
+                    pid = process.pid
+                    proc = process
+
+        rl.add_new_process_id(pid, 'parent_' + str(pid))
+        print(proc.name())
 
 
     # Get child processes
