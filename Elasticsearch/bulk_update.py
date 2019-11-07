@@ -10,12 +10,15 @@ import elasticsearch
 
 es = Elasticsearch(hosts=[{'host': 'localhost', 'port': 9200}])
 
+ids = [598939, 598940, 598941]
+
 # NOTE the (...) round brackets. This is for a generator.
 k = ({
-    "_index": "nginx",
-    "_type": "logs",
+    "_op_type": "update",
+    "_index": "mp__jeb001",
+    "_type": "items",
     "_id": idx,
-    "_source": es_nginx_d,
-} for idx, es_nginx_d in [(0,0)(1,1)])
+    "doc": {"cows4": "a"},
+} for idx in ids)
 
 helpers.bulk(es, k)
