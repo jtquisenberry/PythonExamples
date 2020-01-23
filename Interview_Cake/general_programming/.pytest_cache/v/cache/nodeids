@@ -1,0 +1,9 @@
+[
+  "rectangular_love.py::Test::test_both_rectangles_the_same",
+  "rectangular_love.py::Test::test_no_overlap",
+  "rectangular_love.py::Test::test_one_rectangle_inside_another",
+  "rectangular_love.py::Test::test_overlap_along_both_axes",
+  "rectangular_love.py::Test::test_touch_at_a_corner",
+  "rectangular_love.py::Test::test_touch_on_horizontal_edge",
+  "rectangular_love.py::Test::test_touch_on_vertical_edge"
+]

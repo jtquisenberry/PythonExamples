@@ -1,0 +1,5 @@
+[
+  "find_matching_parenthesis_stack.py::Test::test_all_openers_then_closers",
+  "find_matching_parenthesis_stack.py::Test::test_mixed_openers_and_closers",
+  "find_matching_parenthesis_stack.py::Test::test_no_matching_closer"
+]
