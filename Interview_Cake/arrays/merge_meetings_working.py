@@ -1,24 +1,25 @@
 def merge_ranges(meetings):
-
     meetings.sort(key=lambda x: x[0])
-    merged_meetings = []
-    last_start = meetings[0][0]
-    last_end = meetings[0][1]
+
+    merged_meetings = list()
+
+    previous_start = meetings[0][0]
+    previous_end = meetings[0][1]
 
     for meeting in meetings:
-        current_start, current_end = meeting
-        if current_start <= last_end:
-            last_end = max(current_end, last_end)
+        current_start = meeting[0]
+        current_end = meeting[1]
+
+        if current_start <= previous_end:
+            previous_end = max(current_end, previous_end)
         else:
-            merged_meetings.append((last_start, last_end))
-            last_start = current_start
-            last_end = current_end
+            merged_meetings.append((previous_start, previous_end))
+            previous_start = current_start
+            previous_end = current_end
 
-    merged_meetings.append((last_start, last_end))
+    merged_meetings.append((previous_start, previous_end))
+
     return merged_meetings
-
-    return merged_meetings
-
 
 
 
