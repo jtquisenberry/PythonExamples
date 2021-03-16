@@ -13,6 +13,6 @@ h = hpy()
 
 x = psutil.virtual_memory()
 
-psutil.swap_memory()
+y = psutil.swap_memory()
 
 print(x)

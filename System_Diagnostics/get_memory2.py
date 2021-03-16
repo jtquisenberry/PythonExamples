@@ -4,6 +4,7 @@ print(windll.kernel32)
 print(cdll.msvcrt)
 # <CDLL 'msvcrt', handle ... at ...>
 libc = cdll.msvcrt
+import numpy as np
 
 
 def physical_free_windows():
@@ -33,7 +34,19 @@ def physical_free_windows():
 
     z = GlobalMemoryStatusEx()
     print(z)
-    return z.ullAvailPhys
+    # return z.ullAvailPhys
+    return z
 
 if __name__ == '__main__':
-    physical_free_windows()
+    mem = physical_free_windows()
+    print(mem.ullTotalPhys / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullAvailPhys / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullTotalPageFile / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullAvailPageFile / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullTotalVirtual / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullAvailVirtual / 1024.0 / 1024.0 / 1024.0)
+    print(mem.ullExtendedVirtual / 1024.0 / 1024.0 / 1024.0)
+
+    size = 1024 * 1024 * 1024 * 14
+    print(size * 8 / 1024.0 / 1024 / 1024)
+    X = np.random.randn(size)
