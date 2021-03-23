@@ -37,28 +37,3 @@ for i in range(len(X)):
 
 
 print(np.array(out))
-'''
-print(out)
-'''
-print(np.dot(X,Y))
-
-'''
-
-
-
-
-
-
-
-
-
-
-X_arr = np.array(X)
-Y_arr = np.array(Y)
-print(X)
-print(Y)
-
-z = np.dot(X_arr, Y_arr)
-print(z)
-
-'''
