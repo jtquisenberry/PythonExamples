@@ -1,32 +1,26 @@
 def merge_ranges(meetings):
-    meetings.sort(key=lambda x: x[0])
+    if type(meetings) is not list:
+        raise TypeError("meetings must be a list")
 
-    merged_meetings = list()
+    if len(meetings) == 0:
+        return meetings
 
-    previous_start = meetings[0][0]
-    previous_end = meetings[0][1]
+    sorted_meetings = sorted(meetings, key=lambda x: x[0])
 
-    for meeting in meetings:
+    merged_meetings = [(sorted_meetings[0][0], sorted_meetings[0][1])]
+
+    for meeting in sorted_meetings:
+        last_start = merged_meetings[-1][0]
+        last_end = merged_meetings[-1][1]
         current_start = meeting[0]
         current_end = meeting[1]
 
-        if current_start <= previous_end:
-            previous_end = max(current_end, previous_end)
+        if current_start <= last_end:
+            merged_meetings[-1] = (last_start, max(last_end, current_end))
         else:
-            merged_meetings.append((previous_start, previous_end))
-            previous_start = current_start
-            previous_end = current_end
-
-    merged_meetings.append((previous_start, previous_end))
+            merged_meetings.append((current_start, current_end))
 
     return merged_meetings
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -58,3 +52,12 @@ if __name__ == '__main__':
         actual = merge_ranges([(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)])
         expected = [(0, 1), (3, 8), (9, 12)]
         print(actual == expected)
+
+        actual = merge_ranges([])
+        expected = []
+        print(actual == expected)
+
+        try:
+            merge_ranges(3)
+        except Exception as e:
+            print(e)
