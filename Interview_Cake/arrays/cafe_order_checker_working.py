@@ -1,4 +1,5 @@
 import unittest
+import pytest
 
 
 # https://www.interviewcake.com/question/python/single-riffle-check?course=fc1&section=array-and-string-manipulation
@@ -56,7 +57,20 @@ import unittest
 def is_first_come_first_served(take_out_orders, dine_in_orders, served_orders):
     # Check if we're serving orders first-come, first-served
 
-    return False
+    take_out_orders_index = 0
+    dine_in_orders_index = 0
+    for i in range(len(served_orders)):
+        if take_out_orders_index < len(take_out_orders) and take_out_orders[take_out_orders_index] == served_orders[i]:
+            take_out_orders_index += 1
+        elif dine_in_orders_index < len(dine_in_orders) and dine_in_orders[dine_in_orders_index] == served_orders[i]:
+            dine_in_orders_index += 1
+        else:
+            return False
+
+    if take_out_orders_index < len(take_out_orders) or dine_in_orders_index < len(dine_in_orders):
+        return False
+
+    return True
 
 
 # Tests
@@ -95,5 +109,5 @@ class Test(unittest.TestCase):
         result = is_first_come_first_served([27, 12, 18], [55, 31, 8], [55, 31, 8, 27, 12, 18])
         self.assertTrue(result)
 
-
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
