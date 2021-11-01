@@ -1,6 +1,10 @@
 import unittest
 import math
 
+#######################
+# Problem
+#######################
+
 # A building has 100 floors. One of the floors is the highest floor an egg can be
 # dropped from without breaking.
 
@@ -19,32 +23,38 @@ import math
 # We can always find the highest floor an egg can be dropped from with a worst case
 # of 14 total drops.
 
+#######################
+# Discussion
+#######################
 
-def get_egg_drops_given_floors(floors = 0):
+# As discussed in `two_egg_drop_formula_working.py`, we want to reduce the size of chunks
+# of floors for each round to reflect the fact that testing a chunk uses up one drop.
+# Instead of a formula, here is a bottom-up approach.
+# Assume that we will test one floor in the final round, two floors in the previous round,
+# three floors in the round before that, and so on.
 
 
-    # Reduce the number of floors skipped with the first egg by one each time the first egg does
-    # not break. This is because we want the number of drops of both eggs to remain constant.
+def get_egg_drops_given_floors(floors=0):
 
-    # Round  1: egg1 = 1st drop at floor 14. egg2 13 drops (1 - 13) = 14 drops
-    # Round  2: egg1 = 2nd drop at floor 27, egg2 12 drops (15 - 26) = 14 drops
-    # Round  3: egg1 = 3rd drop at floor 39, egg2 11 drops (28 - 38) = 14 drops
-    # ...
-    # Round 11: egg1 = 11th drop at floor 99, egg2 3 drops (96 - 98) = 14 drops
-    # Round 12: egg1 = 1
+    cumulative_drops = 0
+    amount_to_add = 0
+    while cumulative_drops < floors:
+        amount_to_add += 1
+        cumulative_drops += amount_to_add
 
-    answer1 = (-1 + math.sqrt(1 ** 2 - 4 * 1 * (-2 * floors))) / (2 * 1)
-    answer2 = (-1 - math.sqrt(1 ** 2 - 4 * 1 * (-2 * floors))) / (2 * 1)
-
-    return answer1
-
+    return amount_to_add
 
 
 class Test(unittest.TestCase):
 
     def test_floor_100(self):
-        expected = 13.650971698084906
+        expected = 14
         actual = get_egg_drops_given_floors(100)
+        self.assertEqual(expected, actual)
+
+    def test_floor_753(self):
+        expected = 39
+        actual = get_egg_drops_given_floors(753)
         self.assertEqual(expected, actual)
 
 if __name__ == '__main__':

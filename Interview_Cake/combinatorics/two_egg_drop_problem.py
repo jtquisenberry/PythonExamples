@@ -1,6 +1,28 @@
 import unittest
 import math
 
+#######################
+# Problem
+#######################
+
+# A building has 100 floors. One of the floors is the highest floor an egg can be
+# dropped from without breaking.
+
+# If an egg is dropped from above that floor, it will break. If it is dropped from
+# that floor or below, it will be completely undamaged and you can drop the egg again.
+
+# Given two eggs, find the highest floor an egg can be dropped from without breaking,
+# with as few drops as possible.
+
+# Gotchas
+
+# We can do better than a binary approach, which would have a worst case of 50 drops.
+
+# We can even do better than 19 drops!
+
+# We can always find the highest floor an egg can be dropped from with a worst case
+# of 14 total drops.
+
 def get_egg_drops_given_floors(floors = 0):
 
 
@@ -14,10 +36,11 @@ def get_egg_drops_given_floors(floors = 0):
     # Round 11: egg1 = 11th drop at floor 99, egg2 3 drops (96 - 98) = 14 drops
     # Round 12: egg1 = 1
 
+    # Using the quadratic formula
     answer1 = (-1 + math.sqrt(1 ** 2 - 4 * 1 * (-2 * floors))) / (2 * 1)
     answer2 = (-1 - math.sqrt(1 ** 2 - 4 * 1 * (-2 * floors))) / (2 * 1)
 
-    return answer1
+    return max(answer1, answer2)
 
 
 
