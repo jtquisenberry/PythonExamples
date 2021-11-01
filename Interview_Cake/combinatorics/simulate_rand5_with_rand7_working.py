@@ -13,12 +13,11 @@ def rand7():
 
 
 def rand5():
-    # Implement rand5() using rand7()
-    selected_number = 999
-    while selected_number > 5:
-        selected_number = rand7()
+    roll = 999
+    while roll > 5:
+        roll = rand7()
+    return roll
 
-    return selected_number
 
 print('Rolling 5-sided die...')
 print

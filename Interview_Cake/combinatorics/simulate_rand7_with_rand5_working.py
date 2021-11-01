@@ -17,16 +17,18 @@ def rand5():
 def rand7():
     # Implement rand7() using rand5()
 
-    combined = 99
-    while combined > 21:
+    total = 999
+    while total > 21:
+
+        # Treat each roll as a digit in a base-5 number
+        # Subtract 1 from each roll so that zero is a possible result.
+        # Add 1 to total to produce a number in range 1..25
         roll1 = rand5()
         roll2 = rand5()
-        combined = ((roll1 - 1) * 5 ) + ((roll2 - 1) * 1)  + 1  # 1 - 25
+        total = 5 * (roll1 - 1) + 1 * (roll2 - 1) + 1
+        retval = total % 7
 
-    result = combined % 7 + 1
-
-
-    return result
+    return retval
 
 
 print('Rolling 7-sided die...')

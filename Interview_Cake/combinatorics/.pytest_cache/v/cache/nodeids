@@ -1,1 +1,5 @@
-[]
+[
+  "find_duplicated_number_working.py::Test::test_long_list",
+  "find_duplicated_number_working.py::Test::test_medium_list",
+  "find_duplicated_number_working.py::Test::test_short_list"
+]
