@@ -1,1 +1,9 @@
-[]
+[
+  "find_duplicated_number_working.py::Test::test_long_list",
+  "find_duplicated_number_working.py::Test::test_medium_list",
+  "find_duplicated_number_working.py::Test::test_short_list",
+  "two_egg_drop_bottom_up_working.py::Test::test_floor_100",
+  "two_egg_drop_bottom_up_working.py::Test::test_floor_753",
+  "two_egg_drop_formula_working.py::Test::test_floor_100",
+  "two_egg_drop_formula_working.py::Test::test_floor_753"
+]
