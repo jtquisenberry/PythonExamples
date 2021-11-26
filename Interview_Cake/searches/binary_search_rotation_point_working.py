@@ -24,8 +24,7 @@ def find_rotation_point(words):
         # first word and continuing through the current word.
         # The rotation point (alphabetically first word) must appear later.
         # Must use >= in case floor index = guess index, as in 0 = (1-0//2)
-
-        if words[guess_index] >= first_word:
+        if words[guess_index] > first_word:
 
             # Look to the right by advancing floor_index to guess
             floor_index = guess_index

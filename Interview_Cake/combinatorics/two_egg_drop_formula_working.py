@@ -63,7 +63,7 @@ def get_egg_drops_given_floors(floors=0):
     # Round  2: egg1 = 2nd drop at floor 27, egg2 12 drops (15 - 26) = 14 drops
     # Round  3: egg1 = 3rd drop at floor 39, egg2 11 drops (28 - 38) = 14 drops
     # ...
-    # Round 11: egg1 = 11th drop at floor 99, egg2 3 drops (96 - 98) = 14 drops
+    # Round 11: egg31415921 = 11th drop at floor 99, egg2 3 drops (96 - 98) = 14 drops
     # Round 12: egg1 = 1
 
     # Using the quadratic formula
