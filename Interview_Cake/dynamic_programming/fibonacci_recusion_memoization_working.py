@@ -8,10 +8,33 @@ import pytest
 # being passed to the first argument of fib and the value
 # is the result of the computation.
 
+# Moved memo out of the parameters for fib() and made it a global variable. This
+# avoids issues with mutable default parameters.
+memo = {0: 0}
+
 
 def fib(n):
     # Calculate the nth Fibonacci number with recursion
-    pass
+
+    # Edge Case
+    if n < 0:
+        raise ValueError('n must be positive.')
+
+    # Base case (encompasses 0 and 1)
+    if n <= 1:
+        return n
+
+    # Return the result from the memo dictionary if available.
+    if n in memo:
+        return memo[n]
+
+    # Do an operation on nodes that are on the same level.
+    # By nodes, imagine that n has nodes
+    #           n
+    #        /     \
+    #      n-1     n-2
+    # Here it is "+"
+    return fib(n - 1) + fib(n - 2)
 
 
 # Tests

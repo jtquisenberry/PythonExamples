@@ -1,56 +1,64 @@
 import unittest
 import pytest
 
-# https://www.interviewcake.com/question/python/nth-fibonacci?section=dynamic-programming-recursion&course=fc1
-
-# Includes recursion and memoization.
-# The memo should be a dictionary where the key is the
-# being passed to the first argument of fib and the value
-# is the result of the computation.
+# https://www.interviewcake.com/question/python3/nth-fibonacci?course=fc1&section=dynamic-programming-recursion
+# Recursion
 
 
-def fib(n):
-    # Calculate the nth Fibonacci number with recursion
-    pass
+def fibonacci(n):
+
+    if n < 0:
+        raise ValueError("n must be a positive integer")
+
+    if n < 2:
+        # print(n)
+        return n
+    else:
+        # print(n-1, n-2, fibonacci(n-1), fibonacci(n-2), fibonacci(n-1) + fibonacci(n-2))
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+x = 10
+print(fibonacci(x))
+-- 55
 
 
 # Tests
-
 class Test(unittest.TestCase):
 
     def test_zeroth_fibonacci(self):
-        actual = fib(0)
+        actual = fibonacci(0)
         expected = 0
         self.assertEqual(actual, expected)
 
     def test_first_fibonacci(self):
-        actual = fib(1)
+        actual = fibonacci(1)
         expected = 1
         self.assertEqual(actual, expected)
 
     def test_second_fibonacci(self):
-        actual = fib(2)
+        actual = fibonacci(2)
         expected = 1
         self.assertEqual(actual, expected)
 
     def test_third_fibonacci(self):
-        actual = fib(3)
+        actual = fibonacci(3)
         expected = 2
         self.assertEqual(actual, expected)
 
     def test_fifth_fibonacci(self):
-        actual = fib(5)
+        actual = fibonacci(5)
         expected = 5
         self.assertEqual(actual, expected)
 
     def test_tenth_fibonacci(self):
-        actual = fib(10)
+        actual = fibonacci(10)
         expected = 55
         self.assertEqual(actual, expected)
 
     def test_negative_fibonacci(self):
         with self.assertRaises(Exception):
-            fib(-1)
+            fibonacci(-1)
 
 
 if __name__ == '__main__':
