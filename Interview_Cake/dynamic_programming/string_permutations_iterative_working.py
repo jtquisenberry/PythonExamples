@@ -12,14 +12,17 @@ def get_permutations(string):
     if len(string) < 1:
         return set([string])
 
-    permutations_temp = set()
-    permutations_temp.add(string[0])
+    permutations_temp = {''}
     permutations = set()
-    permutations.add(string[0])
 
-    for char in string[1:]:
+    for char in string[:]:
         permutations = set()
+
+        a = 1
+
         for permutation in permutations_temp:
+
+            b = 1
 
             for i in range(len(permutations_temp) + 1):
                 start = permutation[:i]

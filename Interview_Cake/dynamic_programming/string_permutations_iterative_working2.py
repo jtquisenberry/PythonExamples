@@ -12,28 +12,31 @@ def get_permutations(string):
     if len(string) < 1:
         return set([string])
 
-    permutations_temp = set()
-    permutations_temp.add(string[0])
-    permutations = set()
-    permutations.add(string[0])
+    #permutations_temp = {''}
+    permutations = {''}
 
-    for char in string[1:]:
-        permutations = set()
-        for permutation in permutations_temp:
+    for char in string[:]:
 
-            for i in range(len(permutations_temp) + 1):
+
+        a = 1
+
+        for permutation in permutations:
+
+            b = 1
+
+            for i in range(len(permutations) + 1):
                 start = permutation[:i]
                 end = permutation[i:]
                 out = start + char + end
                 permutations.add(out)
 
-            permutations_temp = permutations
+            permutations = permutations
 
     return permutations
 
 
 # Tests
-
+'''
 class Test(unittest.TestCase):
 
     def test_empty_string(self):
@@ -59,3 +62,5 @@ class Test(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+'''
+print(get_permutations('abc'))
