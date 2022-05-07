@@ -36,11 +36,11 @@ def do_conversion(requests=requests):
             in_node = node[0]
             rate = node[1]
 
-            out_nodes = conversions_dict[in_node]
-            print(out_nodes)
-            for out_node in out_nodes:
-                if out_node == out_node_request:
-                    result.append(rate * conversions_dict[in_node][out_node])
+            target_nodes = conversions_dict[in_node]
+            print(target_nodes)
+            for target_node in target_nodes:
+                if target_node == out_node_request:
+                    result.append(rate * conversions_dict[in_node][target_node])
                     node_stack = []
 
                     # We must use `clear` rather than ` = set()` because creating
@@ -51,9 +51,9 @@ def do_conversion(requests=requests):
                     #visited = set()
                     break
                 else:
-                    if out_node not in visited:
-                        node_stack.append((out_node, rate * conversions_dict[in_node][out_node]))
-                        visited.add(out_node)
+                    if target_node not in visited:
+                        node_stack.append((target_node, rate * conversions_dict[in_node][target_node]))
+                        visited.add(target_node)
 
         a_breakpoint = 0
 
