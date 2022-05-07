@@ -42,25 +42,22 @@ def do_conversion(requests=requests):
                 if out_node == out_node_request:
                     result.append(rate * conversions_dict[in_node][out_node])
                     node_stack = []
-                    #visited.clear()
+
+                    # We must use `clear` rather than ` = set()` because creating
+                    # a new set will create a new local variable, and we want to work
+                    # with the global variable. The result would be different if the
+                    # function had default argument visited=visited.
                     visited.clear()
+                    #visited = set()
                     break
                 else:
                     if out_node not in visited:
                         node_stack.append((out_node, rate * conversions_dict[in_node][out_node]))
                         visited.add(out_node)
 
-
-
-
-            a = 1
-
-        b = 1
+        a_breakpoint = 0
 
     return result
-
-
-
 
 
 if __name__ == '__main__':
