@@ -26,7 +26,7 @@ def color_graph(graph, colors):
     # Create a valid coloring for the graph
 
     # Color one node at a time.
-    # Hadle each node in the list, rather than traversing
+    # Handle each node in the list, rather than traversing
     # the graph. This avoids problems with nodes with no
     # edges and cycles other than loops.
     for node in graph:

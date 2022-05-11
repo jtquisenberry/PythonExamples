@@ -8,58 +8,42 @@ from collections import deque
 # For each neighbor, if not in the list of visited nodes,
 # add to nodes to visit and visited.
 
-def reconstruct_path(previous_nodes, start_node, end_node):
-    reversed_shortest_path = []
-
-    # Start from the end of the path and work backwards
+def reconstruct_path(visited, start_node, end_node):
+    path = [] # reversed at this point
     current_node = end_node
     while current_node:
-        reversed_shortest_path.append(current_node)
-        current_node = previous_nodes[current_node]
+        path.append(current_node)
+        current_node = visited[current_node]
 
-    # Reverse our path to get the right order
-    reversed_shortest_path.reverse()  # flip it around, in place
-    return reversed_shortest_path  # no longer reversed
+    path.reverse()
+    return path
 
 
 def bfs_get_path(graph, start_node, end_node):
-    # Find the shortest route in the network between the two users
 
+    # Find the shortest route in the network between the two users
     if start_node not in graph:
-        raise ValueError('Enter a start node in the graph')
+        raise ValueError('')
 
     if end_node not in graph:
-        raise ValueError('Enter an end node in the graph')
+        raise ValueError('')
+
+    visited = {start_node: None}
 
     nodes_to_visit = deque()
     nodes_to_visit.append(start_node)
 
-    # Keep track of how we got to each node
-    # We'll use this to reconstruct the shortest path at the end
-    # We'll ALSO use this to keep track of which nodes we've
-    # already visited
-    how_we_reached_nodes = {start_node: None}
-
     while len(nodes_to_visit) > 0:
-
-        print("nodes_to_visit", nodes_to_visit)
-        print("how_we_reached_nodes", how_we_reached_nodes)
-
         current_node = nodes_to_visit.popleft()
 
-        # Stop when we reach the end node
-        print("current_node", current_node)
-        print("end_node", end_node)
         if current_node == end_node:
-            return reconstruct_path(how_we_reached_nodes, start_node, end_node)
+            return reconstruct_path(visited, start_node, end_node)
 
         for neighbor in graph[current_node]:
-            if neighbor not in how_we_reached_nodes:
+            if neighbor not in visited:
                 nodes_to_visit.append(neighbor)
-                how_we_reached_nodes[neighbor] = current_node
+                visited[neighbor] = current_node
 
-    # If we get here, then we never found the end node
-    # so there's NO path from start_node to end_node
     return None
 
 
