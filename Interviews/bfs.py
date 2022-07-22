@@ -13,3 +13,4 @@ d.pop()
 
 print(d)
 print(list(d))
+

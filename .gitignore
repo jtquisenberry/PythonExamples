@@ -5,3 +5,5 @@
 *.pyc
 *.pyc
 \.idea\
+/Interview_Cake/trees_and_graphs/.pytest_cache/v/cache/stepwise
+/Interview_Cake/trees_and_graphs/.pytest_cache/v/cache/lastfailed
