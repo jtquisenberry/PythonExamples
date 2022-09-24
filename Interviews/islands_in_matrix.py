@@ -22,15 +22,15 @@ for graph_row in graph:
     print(graph_row)
 print()
 
-num_columns = len(graph)
-num_rows = len(graph[0])
+num_columns = len(graph[0])
+num_rows = len(graph)
 count = 0
 
 visited = []
 for i in range(num_rows):
     row = list([0] * num_columns)
     visited.append(row)
-#print(visited)
+print(visited)
 
 def is_safe(i, j):
     if i >= 0 and i < num_rows and j >= 0 and j < num_columns:
