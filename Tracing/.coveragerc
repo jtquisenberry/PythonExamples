@@ -2,7 +2,7 @@
 [run]
 source = ./
 parallel = True
-concurrency = multiprocessing
+concurrency = multiprocessing,thread
 
 [report]
 # Regexes for lines to exclude from consideration
