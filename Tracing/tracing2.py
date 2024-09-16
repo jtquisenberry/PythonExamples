@@ -42,5 +42,3 @@ if __name__ == '__main__':
     sys.settrace(tracefunc3)
     main()
 
-
-# python -m trace -t tracing1.py

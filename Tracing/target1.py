@@ -9,9 +9,3 @@ if __name__ == '__main__':
 
     main()
 
-
-# python -m trace -t tracing1.py
-
-
-# coverage run --branch target1.py
-# coverage report -m
