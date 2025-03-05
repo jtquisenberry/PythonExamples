@@ -7,3 +7,7 @@
 \.idea\
 /Interview_Cake/trees_and_graphs/.pytest_cache/v/cache/stepwise
 /Interview_Cake/trees_and_graphs/.pytest_cache/v/cache/lastfailed
+/Tracing/.coverage
+/Tracing/coverage.json
+/Tracing/coverage.xml
+/Tracing/htmlcov/

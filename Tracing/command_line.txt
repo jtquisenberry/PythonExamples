@@ -1,0 +1,2 @@
+> cd Tracing
+> coverage run -p --concurrency=multiprocessing,thread tracing1.py -m
