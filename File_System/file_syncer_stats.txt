@@ -1,0 +1,5 @@
+evaluate_file_matches_full                 Time taken for function: 90.4275474 seconds
+evaluate_file_matches_random_100           Time taken for function: 189.52150079999998 seconds
+evaluate_file_matches_random_100_sorted    Time taken for function: 167.26380289999997 seconds
+evaluate_file_matches_filecmp              Time taken for function: 67.37749739999998 seconds
+evaluate_file_matches_md5                  Time taken for function: 130.60349730000007 seconds
