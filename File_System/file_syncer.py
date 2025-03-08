@@ -85,6 +85,32 @@ class FileSyncer:
     def copy_files(self):
         pass
 
+    def resume_copy(self, source_path, destination_path):
+        """Resumes an interrupted file copy."""
+
+        copied_bytes = 0
+
+        # Check if the destination file exists and get its size
+        if os.path.exists(destination_path):
+            copied_bytes = os.path.getsize(destination_path)
+
+        with open(source_path, 'rb') as source, open(destination_path, 'ab') as destination:
+            # Seek to the last copied position in both files
+            source.seek(copied_bytes)
+            # Copy remaining data
+            while True:
+                try:
+                    chunk = source.read(4096)
+                    if not chunk:
+                        break
+                    destination.write(chunk)
+                    copied_bytes += len(chunk)
+                except Exception as e:
+                    print(f"Error occurred: {e}")
+                    print(f"Copy interrupted at {copied_bytes} bytes. Please try again.")
+                    return False
+        return True
+
     def evaluate_file_matches_full(self):
         for partial_filename in self.in_both:
             left_fq_filename = os.path.join(self.local_path, partial_filename)
