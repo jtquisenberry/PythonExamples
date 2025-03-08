@@ -17,24 +17,7 @@ class FileSyncer:
     def find_matches(self):
         pass
 
-    def get_files2(self, folder):
-        files = []
-        for file in os.listdir(folder):
-            file_path = os.path.join(folder, file)
-            if os.path.isfile(file_path):
-                files.append(file)
-        return files
-
-    def get_files3(self, folder):
-        files = []
-        for root, dirs, files in os.walk(folder):
-            print(root, dirs)
-            for file in files:
-                print(root, dirs, file)
-                #    files.append(file)
-        return files
-
-    def get_files(self, directory, pattern='**'):
+    def get_files(self, directory, pattern='**'):  # noqa Method is static
         """
         Recursively finds files matching the given pattern and processes them.
 
@@ -59,6 +42,48 @@ class FileSyncer:
         self.left_only = left_files.difference(right_files)
         self.right_only = right_files.difference(left_files)
         self.in_both = left_files.intersection(right_files)
+
+    def in_left_only(self):
+        return self.left_only
+
+    def in_right_only(self):
+        return self.right_only
+
+    def in_left_and_right(self):
+        return self.in_both
+
+    def delete_left(self):
+        pass
+
+    def delete_left_only(self):
+        files = list()
+        for partial_file in self.left_only:
+            file = os.path.join(self.local_path, partial_file)
+            files.append(file)
+        self.delete_contents(files)
+
+    def delete_right(self):
+        pass
+
+    def delete_right_only(self):
+        files = list()
+        for partial_file in self.right_only:
+            file = os.path.join(self.remote_path, partial_file)
+            files.append(file)
+        self.delete_contents(files)
+
+    def delete_contents(self, files):  # noqa Method is static
+        for file in files:
+            os.remove(file)
+
+    def delete_all(self, files, directories):  # noqa Method is static
+        for file in files:
+            os.remove(file)
+        for directory in directories:
+            os.rmdir(directory)
+
+    def copy_files(self):
+        pass
 
     def evaluate_file_matches_full(self):
         for partial_filename in self.in_both:
@@ -167,20 +192,20 @@ fs = FileSyncer(local_path='D:\\Development\\temp\\',
 
 fs.evaluate_path_matches()
 
-time_taken_function = timeit.timeit(fs.evaluate_file_matches_full, number=10000)
-print(f"Time taken for function: {time_taken_function} seconds")
-
-time_taken_function = timeit.timeit(fs.evaluate_file_matches_random_100, number=10000)
-print(f"Time taken for function: {time_taken_function} seconds")
-
-time_taken_function = timeit.timeit(fs.evaluate_file_matches_random_100_sorted, number=10000)
-print(f"Time taken for function: {time_taken_function} seconds")
-
-time_taken_function = timeit.timeit(fs.evaluate_file_matches_filecmp, number=10000)
-print(f"Time taken for function: {time_taken_function} seconds")
-
-time_taken_function = timeit.timeit(fs.evaluate_file_matches_md5, number=10000)
-print(f"Time taken for function: {time_taken_function} seconds")
+# time_taken_function = timeit.timeit(fs.evaluate_file_matches_full, number=10000)
+# print(f"Time taken for function: {time_taken_function} seconds")
+#
+# time_taken_function = timeit.timeit(fs.evaluate_file_matches_random_100, number=10000)
+# print(f"Time taken for function: {time_taken_function} seconds")
+#
+# time_taken_function = timeit.timeit(fs.evaluate_file_matches_random_100_sorted, number=10000)
+# print(f"Time taken for function: {time_taken_function} seconds")
+#
+# time_taken_function = timeit.timeit(fs.evaluate_file_matches_filecmp, number=10000)
+# print(f"Time taken for function: {time_taken_function} seconds")
+#
+# time_taken_function = timeit.timeit(fs.evaluate_file_matches_md5, number=10000)
+# print(f"Time taken for function: {time_taken_function} seconds")
 
 # fs.evaluate_path_matches()
 # fs.evaluate_file_matches2()
