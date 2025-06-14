@@ -18,7 +18,7 @@ ax.set_xlim(x.min(), x.max() + 1)
 ax.set_ylim(y1.min(), y1.max() + 10)
 ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
 ax.yaxis.set_major_locator(ticker.MultipleLocator(10))
-ax.grid()
+ax.grid(True)
 
 ax.legend(loc='best', frameon=True)
 plt.show()
