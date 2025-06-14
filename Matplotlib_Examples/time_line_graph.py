@@ -9,7 +9,7 @@ y1 = np.array([0, 2, 2, 5, 7, 15, 28, 55, 84, 155])
 y2 = np.array([1, 1, 2, 3, 5, 8, 13, 21, 35, 56])
 
 ax.plot(x, y1, color='blue', marker='d', label='Line 1', linewidth=3, markersize=6)
-ax.plot(x, y2, color='red', marker='d', label='Line 2')
+ax.plot(x, y2, color=(.5, .5, 0, 0.5), marker='o', label='Line 2', linewidth=3, markersize=6)
 ax.set_title("Title")
 
 ax.set_xlabel("Label X")
